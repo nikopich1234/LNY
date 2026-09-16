@@ -6,7 +6,7 @@ number = input("input a uni number \n")
 base =  int(input("input number base \n"))
 
 for i in range(len(number)):
-    if number[i] not in uni and not ".":
+    if number[i] not in uni and number[i] != ".":
         raise ValueError("Unsupported symbol in number")
 
 def check_con_ability(base):
