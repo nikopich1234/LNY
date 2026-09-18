@@ -1,3 +1,5 @@
+//Lab1.cpp
+
 #include <iostream>
 #include "LogCon.h"
 using namespace std;

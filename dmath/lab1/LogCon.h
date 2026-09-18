@@ -1,3 +1,5 @@
+// LogCon.h
+
 #include <stdbool.h>
 
 #ifndef LOGCON

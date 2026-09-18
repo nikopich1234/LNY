@@ -1,3 +1,5 @@
+//LogCon.cpp
+
 #include "LogCon.h"
 #include <iostream>
 #include <string>
@@ -39,13 +41,8 @@ bool OR(bool a, bool b){
 }
 
 bool IMP(bool a, bool b){
-    if(a){
-        if(b){
-            return true;
-        }
-        else{
-            return false;
-        }
+    if(a == 1 && b == 0){
+        return false;
     }
     else{
         return true;
