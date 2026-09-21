@@ -16,11 +16,11 @@ def check_con_ability(base):
         return True
 
 def check_split_ability(number):
-    if "." in number:
+    if "." in str(number):
         return True
     return False
 
-def uni_to_dec(number, base_uni, accurancy = 0):
+def uni_to_dec(number: float, base_uni: str, accurancy = 0) -> float:
     base_uni_len = len(base_uni)
     if check_split_ability(number):
         number_parts = number.split(".") # [0] - int, [1] - float
@@ -47,8 +47,9 @@ def uni_to_dec(number, base_uni, accurancy = 0):
                 uni_to_dec_result += base_uni.find(number[i]) * len(base_uni) ** (len(number)-i-1) 
         return uni_to_dec_result
 
-def dec_to_uni(number, base_uni, accurancy = 0):
-    if "." in str(number):
+
+def dec_to_uni(number: float, base_uni: str, accurancy = 0) -> str:
+    if check_split_ability(number):
         number_parts = str(number).split(".")
         number_int_part = int(number_parts[0])
         number_float_part = int(number_parts[1])
@@ -87,10 +88,16 @@ if check_con_ability(base):
     if check_split_ability(number):
         accurancy = int(input("input accurancy \n"))
         dec_number = uni_to_dec(number, base_uni, accurancy)
+        print(f"{base}-base to decimal number: ", dec_number)
+        base = int(input("input convertation base\n"))
+        base_uni = uni[:base]
         uni_number = dec_to_uni(dec_number, base_uni, accurancy)
+        print(f"decimal to {base}-base number: ", uni_number)
     else:
         dec_number = uni_to_dec(number, base_uni)
+        print(f"{base}-base to decimal number: ", dec_number)
+        base = int(input("input convertation base\n"))
+        base_uni = uni[:base]
         uni_number = dec_to_uni(dec_number, base_uni)
+        print(f"decimal to {base}-base number: ", uni_number)
 
-print(f"{base}-base to decimal number: ", dec_number)
-print(f"decimal to {base}-base number: ", uni_number)
