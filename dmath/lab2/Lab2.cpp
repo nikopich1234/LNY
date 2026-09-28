@@ -8,8 +8,8 @@ using namespace std::chrono;
 
 int main(){
     srand(time(NULL));
-    int size, start, end;
-    cin >> size >> start >> end;
+    int size, start, end, direction;
+    cin >> size >> start >> end >> direction;
     datatype* arr = new datatype[size];
 
 
@@ -31,7 +31,7 @@ int main(){
     show(arr, start, end);
 
     auto time_start = high_resolution_clock::now();
-    SortBubble(new_arr, start, end);
+    SortBubble(new_arr, start, end, direction);
     auto time_end = high_resolution_clock::now();
     auto elapsed = duration<double, nano>(time_end - time_start);
     cout << "sorted array (Bubble sort):" << endl;
@@ -42,7 +42,7 @@ int main(){
         new_arr[i] = arr[i];
     }
     time_start = high_resolution_clock::now();
-    SortSelection(new_arr, start, end);
+    SortSelection(new_arr, start, end, direction);
     time_end = high_resolution_clock::now();
     elapsed = duration<double, nano>(time_end - time_start);
     cout << "sorted array (Selection sort):" << endl;
@@ -53,7 +53,7 @@ int main(){
         new_arr[i] = arr[i];
     }
     time_start = high_resolution_clock::now();
-    SortInsertion(new_arr, start, end);
+    SortInsertion(new_arr, start, end, direction);
     time_end = high_resolution_clock::now();
     elapsed = duration<double, nano>(time_end - time_start);
     cout << "sorted array (Insertion sort):"  << endl;
