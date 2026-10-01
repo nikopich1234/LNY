@@ -30,5 +30,7 @@ int main(){
     }
     cout << endl;
 
-    GenPerm(arr, 0, size);
+    GenPerm(arr, size, 0);
+
+    cout << endl;
 }

@@ -1,4 +1,5 @@
 #include "Comb.h"
+#include "Sort.h"
 
 long long factorial(int n){
     long long int res = 1;
@@ -24,6 +25,6 @@ long long _C(int n, int k){
     return factorial(n+k-1) / (factorial(k)*factorial(n-1));
 }
 
-void GenPerm(int* arr, int start, int end){
+void GenPerm(vector<datatype>& arr, int start, int end){
     
 }

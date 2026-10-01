@@ -1,5 +1,11 @@
 #include "Sort.h"
 
+void show(vector<datatype>& arr,int start,int end){
+    for(auto item : arr){
+        cout << item << " ";
+    }
+    cout << endl;
+}
 
 void myswap(datatype &a, datatype &b){
     datatype temp = a;
@@ -7,32 +13,33 @@ void myswap(datatype &a, datatype &b){
     b = temp;
 }
 
-datatype MinItem(vector<datatype> arr, int start, int end){
-    datatype minitem = arr[0];
+int MinItem(vector<datatype>& arr, int start, int end){
+    int min_i = start;
     for(int i = start; i < end; i++){
-        if(minitem > arr[i]){
-            minitem = i;
+        if(arr[min_i] > arr[i]){
+            min_i = i;
         }
     }
-    return minitem;
+    return min_i;
 }
 
-datatype MaxItem(vector<datatype> arr, int start, int end){
-    datatype maxitem = arr[0];
+int MaxItem(vector<datatype>& arr, int start, int end){
+    int max_i = start;
     for(int i = start; i < end; i++){
-        if(maxitem < arr[i]){
-            maxitem = i;
+        if(arr[max_i] < arr[i]){
+            max_i = i;
         }
     }
-    return maxitem;
+    return max_i;
 }
 
-void SortSelection(vector<datatype> arr, int start, int end, int direction){
+void SortSelection(vector<datatype>& arr, int start, int end, int direction){
     if(direction == 0){
-        for(int i = start; i <= end; i++){
+        for(int i = start; i < end; i++){
             int min_i = MinItem(arr, i, end);
             if(min_i != i){
                 myswap(arr[i], arr[min_i]);
+                show(arr);
             }
         }
     }

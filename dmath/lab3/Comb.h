@@ -13,6 +13,6 @@ long long int A(int n, int k);
 long long int _A(int n, int k);
 long long int C(int n, int k);
 long long int _C(int n, int k);
-void GenPerm(vector<datatype> arr, int start, int end);
+void GenPerm(vector<datatype>& arr, int start, int end);
 
 #endif
