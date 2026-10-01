@@ -23,12 +23,12 @@ int main(){
     }
     cout << endl;
 
-    SortSelection(arr.data(), 0, size);
+    SortSelection(arr, 0, size, 0);
 
     for(auto item : arr){
         cout << item << " ";
     }
     cout << endl;
 
-    GenPerm(arr.data(), 0, size);
+    GenPerm(arr, 0, size);
 }

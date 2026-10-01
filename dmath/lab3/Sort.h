@@ -7,12 +7,9 @@ using namespace std;
 
 typedef int datatype;
 
-datatype MinItem(datatype arr[], int start = 0, int end = 0);
-datatype MaxItem(datatype arr[], int start = 0, int end = 0);
-void show(datatype arr[], int start = 0, int end = 0);
+datatype MinItem(vector<datatype> arr, int start = 0, int end = 0);
+datatype MaxItem(vector<datatype> arr, int start = 0, int end = 0);
 void myswap(datatype &a, datatype &b);
-void SortBubble(vector<datatype> nums, int start = 0, int end = 0);
-void SortInsertion(vector<datatype> nums, int start = 0, int end = 0);
-void SortSelection(vector<datatype> nums, int start = 0, int end = 0);
+void SortSelection(vector<datatype> arr, int start = 0, int end = 0, int direction = 0);
 
 #endif
