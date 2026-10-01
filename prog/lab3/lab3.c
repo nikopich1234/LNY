@@ -3,7 +3,7 @@
 #include <stdbool.h>
 
 double func(double num){
-    return cos(num);
+    return sin(num+cos(num));
 }
 
 int main(){
@@ -30,7 +30,7 @@ int main(){
         }
     }
     if(found){
-        printf("%f\n", c);
+        printf("%f %i\n", c, counter);
     }
     else{
         printf("no roots\n");
