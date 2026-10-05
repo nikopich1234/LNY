@@ -46,6 +46,39 @@ double Newton_method(double a, double b){
     return c;
 }
 
+double chord_method(double a, double b){
+    double c;
+    int counter = 0;
+    double previous;
+    if(fabs(b-a) < eps){
+        return (a+b)/2;
+    }
+    else{
+        c = a;
+        for(int i = 0; i < 30; i++){
+            previous = c;
+            c = b - func(b)*((b-a)/(func(b)-func(a)));
+            if(fabs(previous - c) < eps){
+                break;
+            }
+            else if(fabs(func(c)) < eps){
+                break;
+            }
+            if(func(a)*func(c) >= 0){
+                counter++;
+                a = c;
+            }
+            else{
+                counter++;
+                b = c;
+            }
+
+        }
+        printf("iterations : %i\n",counter);
+    }
+    return c;
+}
+
 int main(){
 
     double a,b,c;
@@ -53,7 +86,18 @@ int main(){
     scanf("%lf %lf", &a,&b);
     printf("Newton method:\n");
     c = Newton_method(a,b);
-            if(c >= a && c <= b){
+        if(c >= a && c <= b){
+            printf("root: %lf\n",c);
+
+        }
+        else{
+            printf("root: %lf\n",c);
+            printf("out of bounds\n");
+        }
+
+    printf("chords method:\n");
+    c = chord_method(a,b);
+        if(c >= a && c <= b){
             printf("root: %lf\n",c);
 
         }
