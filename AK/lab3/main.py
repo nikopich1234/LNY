@@ -1,3 +1,33 @@
+num = input()
+nums = num.split(".")
+
+bits = 0
+
+def bin_float(nums: list, accurancy: int = 0) -> str:
+    global bits
+    res = ""
+    int_part = int(nums[0])
+    if int_part >= 0:
+        res+="0"
+    else:
+        res+="1"
+        int_part = abs(int_part)
+    while int_part > 0:
+        res+=str(int_part%2)
+        int_part//=2
+    res = res[0] + res[:0:-1]
+    bits = len(res)-1
+    res+="."
+
+    float_part = float(f"0.{nums[1]}")
+    for i in range(accurancy):
+        float_part *= 2
+        res+=str(int(float_part))
+        float_part -= int(float_part)
+    return res
+bin_float(nums,9)
+print(bits)
+
 num = int(input())
 nums = [int(item) for item in str(num)]
 if len(nums) % 2 != 0:
@@ -80,7 +110,9 @@ def additional_format() -> str:
         additional+="1"
     return additional
 
-
+print("forward format:")
 print(forward_format())
+print("reversed format:")
 print(reversed_format())
+print("additional format:")
 print(additional_format())
