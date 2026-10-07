@@ -1,5 +1,6 @@
 #include "Comb.h"
 #include "Sort.h"
+#include <fstream>
 
 long long factorial(int n){
     long long int res = 1;
@@ -65,4 +66,24 @@ void GenComb(vector<datatype>& arr, int start, int end, int n, int k){
     for(j = i+1; j < end; j++){
         arr[j] = arr[j-1]+1;
     }
+}
+
+void GenArr(vector<datatype>& arr, int n, int k){
+
+    ofstream writer;
+    writer.open("C:\\Users\\nikop\\OneDrive\\Desktop\\LNY\\LNY\\dmath\\lab3\\Lab3_2_Arrangments.txt");
+    for(int i = 0; i < C(n,k); i++){
+        writer << "№" << i+1 << " | ";
+        for(int j = 0; j < factorial(k); j++){
+            for(int x = 0; x <k; x++){
+                writer << arr[x] << " ";
+            }
+            writer << "; ";
+            GenPerm(arr, 0, k);
+        }
+        writer << "\n";
+        SortSelection(arr, 0, k, 0);
+        GenComb(arr, 0,k,n,k);
+    }
+    writer.close();
 }

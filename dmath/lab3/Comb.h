@@ -15,5 +15,6 @@ long long int C(int n, int k);
 long long int _C(int n, int k);
 void GenPerm(vector<datatype>& arr, int start, int end);
 void GenComb(vector<datatype>& arr, int start, int end, int n, int k);
+void GenArr(vector<datatype>& arr, int n, int k);
 
 #endif
