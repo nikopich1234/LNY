@@ -83,7 +83,7 @@ void GenArr(vector<datatype>& arr, int n, int k){
         }
         writer << "\n";
         SortSelection(arr, 0, k, 0);
-        GenComb(arr, 0,k,n,k);
+        GenComb(arr,n,k);
     }
     writer.close();
 }

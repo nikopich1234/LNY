@@ -48,7 +48,7 @@ int main(){
                 writer << x << " ";
             }
             writer << "\n";
-            GenComb(arr2,0,k,n,k);
+            GenComb(arr2,n,k);
         }
     }
     writer.close();
