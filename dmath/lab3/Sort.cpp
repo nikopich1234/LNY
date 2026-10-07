@@ -1,4 +1,5 @@
 #include "Sort.h"
+#include <iostream>
 
 void show(vector<datatype>& arr,int start,int end){
     for(auto item : arr){
@@ -39,7 +40,6 @@ void SortSelection(vector<datatype>& arr, int start, int end, int direction){
             int min_i = MinItem(arr, i, end);
             if(min_i != i){
                 myswap(arr[i], arr[min_i]);
-                show(arr);
             }
         }
     }
