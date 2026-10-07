@@ -51,19 +51,19 @@ void GenPerm(vector<datatype>& arr, int start, int end){
     SortSelection(arr, i, end, 0);
 }
 
-void GenComb(vector<datatype>& arr, int start, int end, int n, int k){
+void GenComb(vector<datatype>& arr, int n, int k){
     int i;
-    for(i = end-1; i >= start; i--){
+    for(i = k-1; i >= 0; i--){
         if(arr[i] != (n-k+i+1)){
             arr[i]++;
             break;
         }
     }
-    if(i < start){
+    if(i < 0){
         return;
     }
     int j;
-    for(j = i+1; j < end; j++){
+    for(j = i+1; j < k; j++){
         arr[j] = arr[j-1]+1;
     }
 }
