@@ -19,7 +19,7 @@ int main(){
     cout << endl;
 
     ofstream writer;
-    writer.open("C:\\Users\\nikop\\OneDrive\\Desktop\\LNY\\LNY\\dmath\\lab3\\Lab3_2_Permutations");
+    writer.open("/Users/nikopich/Desktop/LNY/dmath/lab3/Lab3_2_Permutations.txt");
     if(writer.is_open()){
         for(int i = 0; i < factorial(size); i++){
             writer << "№" << i+1 << " | ";
@@ -40,7 +40,7 @@ int main(){
         arr2.push_back(i+1);
     }
 
-    writer.open("C:\\Users\\nikop\\OneDrive\\Desktop\\LNY\\LNY\\dmath\\lab3\\Lab3_2_Combinations");
+    writer.open("/Users/nikopich/Desktop/LNY/dmath/lab3/Lab3_2_Combinations.txt");
     if(writer.is_open()){
         for(int i = 0; i < C(n,k);i++){
             writer << "№" << i+1 << " | ";

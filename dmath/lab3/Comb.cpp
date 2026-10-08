@@ -71,7 +71,7 @@ void GenComb(vector<datatype>& arr, int n, int k){
 void GenArr(vector<datatype>& arr, int n, int k){
 
     ofstream writer;
-    writer.open("C:\\Users\\nikop\\OneDrive\\Desktop\\LNY\\LNY\\dmath\\lab3\\Lab3_2_Arrangments.txt");
+    writer.open("/Users/nikopich/Desktop/LNY/dmath/lab3/Lab3_2_Arrangment.txt");
     for(int i = 0; i < C(n,k); i++){
         writer << "№" << i+1 << " | ";
         for(int j = 0; j < factorial(k); j++){
