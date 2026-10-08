@@ -35,7 +35,10 @@ int main(){
     int n,k;
     vector<datatype>arr2;
     cin >> n >> k;
-    
+    if(n < k){
+        cout << "n > k" << endl;
+        return 1;
+    }
     for(int i = 0; i < k; i++){
         arr2.push_back(i+1);
     }
