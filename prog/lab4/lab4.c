@@ -5,7 +5,7 @@ double eps = 0.0001;
 double d = 0.000001;
 
 double func(double num){
-    return (pow(num,3) + cos(num));
+    return (pow(num,2)-log(num+1));
 }
 
 double f1p(double num){
