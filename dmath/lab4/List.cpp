@@ -2,12 +2,6 @@
 #include <iostream>
 using namespace std;
 
-struct Node{
-    datatype key;
-    Node* next;
-    Node* previous;
-};
-
 void push(Node* &head, datatype key){
     Node *temp = new Node;
     temp->key = key;
@@ -24,7 +18,7 @@ void pop(Node* &head){
     delete temp;
 }
 
-void show(Node* &head){
+void show_stack(Node* &head){
     Node *temp = head;
     while(temp != nullptr){
         cout << temp->key << " ";
@@ -32,26 +26,46 @@ void show(Node* &head){
     }
 }
 
-void enqueue(Node* &head, datatype key){
-    Node* front = nullptr;
-    Node* rear = nullptr;
+void enqueue(Queue* head, datatype key){
     Node* temp = new Node;
     temp->key = key;
     temp->next = nullptr;
-    if(head == nullptr){
-        front = temp;
+    temp->previous = nullptr;
+    if(head->front == nullptr){
+        head->front = temp;
+        head->rear = temp;
     }
     else{
-        rear->next = temp;
+        head->rear->next = temp;
+        temp->previous = head->rear;
+        head->rear = temp;
     }
-    rear = temp;
+    head->rear = temp;
 }
 
-void dequeue(Node* &head){
+void dequeue(Queue* head){
+    if(head->front == nullptr or head == nullptr){
+        return;
+    }
+    Node* temp = head->front;
+    head->front = head->front->next;
+    if(head->front != nullptr){
+        head->front->previous = nullptr;
+    }
+    else{
+        head->rear=nullptr;
+    }
+    delete temp;
+}
+
+void show_queue(Queue* head){
     if(head == nullptr){
         return;
     }
-    Node* temp = head;
-    head = temp->next;
-    delete temp;
+    Node* temp = head->front;
+    while(temp != nullptr){
+        cout << temp->key << " ";
+        temp = temp->next;
+    }
+    cout << endl;
 }
