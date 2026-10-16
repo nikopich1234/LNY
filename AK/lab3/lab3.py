@@ -95,7 +95,49 @@ def forward_format(nums: list) -> str:
 
     return res
 
+def reversed_format(nums: list) -> str:
+    fwd = forward_format(nums)
+    res = ""
+    if fwd[0] == "1":
+        for i in range(len(fwd)):
+            if fwd[i] == "0":
+                res+="1"
+            elif fwd[i] == "1":
+                res+="0"
+            elif fwd[i] == ",":
+                res+=","
+            else:
+                res+=" "
+        return res
+    return fwd
+
+def additional_format(nums: list) -> str:
+    fwd = reversed_format(nums)
+    res = ""
+    if fwd[0] == "1":
+        res = fwd[:(len(fwd)-1)] + "1"
+        return res
+    return fwd
+
+def modified_forward_format(nums: list) -> str:
+    fwd = forward_format(nums)
+    return fwd[0] + fwd
+
+def modified_reversed_format(nums: list) -> str:
+    fwd = reversed_format(nums)
+    return fwd[0] + fwd
+
+def modified_additional_format(nums: list) -> str:
+    fwd = additional_format(nums)
+    return fwd[0] + fwd
+
+
 print(bin_float(nums, 3))
 print(packed_format(nums))
 print(not_packed_format(nums))
 print(forward_format(nums))
+print(reversed_format(nums))
+print(additional_format(nums))
+print(modified_forward_format(nums))
+print(modified_reversed_format(nums))
+print(modified_additional_format(nums))
