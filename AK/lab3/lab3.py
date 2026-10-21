@@ -99,7 +99,8 @@ def reversed_format(nums: list) -> str:
     fwd = forward_format(nums)
     res = ""
     if fwd[0] == "1":
-        for i in range(len(fwd)):
+        res+="1"
+        for i in range(1,len(fwd)):
             if fwd[i] == "0":
                 res+="1"
             elif fwd[i] == "1":
