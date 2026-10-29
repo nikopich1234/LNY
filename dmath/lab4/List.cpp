@@ -17,7 +17,7 @@ void push(Node* &head, datatype key){
 
 void pop(Node* &head){
     if(head == nullptr){
-        cout << "Stack is empty";
+        cout << "Stack is empty\n";
         return;
     }
     Node *temp = head;
@@ -31,6 +31,7 @@ void show(Node* &head){
         cout << temp->key << " ";
         temp = temp->next;
     }
+    cout << endl;
 }
 
 void enqueue(Node* &front, Node* &rear, datatype val){
@@ -38,7 +39,7 @@ void enqueue(Node* &front, Node* &rear, datatype val){
     temp->key = val;
     temp->next = nullptr;
     if(front == nullptr){
-        cout << "Queue is empty";
+        cout << "Queue is empty\n";
         front = temp;
     }
     else{
@@ -84,10 +85,6 @@ void add_end(Node* &first, Node* &last, datatype val){
 }
 
 void del_begin(Node* &first, Node* &last){
-    if(first == nullptr){
-        cout << "List is empty";
-        return;
-    }
     Node* temp = first;
     first = temp->next;
     if(first->previous != nullptr){
@@ -100,10 +97,6 @@ void del_begin(Node* &first, Node* &last){
 }
 
 void del_end(Node* &first, Node* &last){
-    if(last == nullptr){
-        cout << "List is empty";
-        return;
-    }
 
     Node* temp = last;
     last = temp->previous;
@@ -126,8 +119,7 @@ Node* search(Node* &first, Node* &last, datatype val){
             temp = temp->next;
         }
     }
-    cout << "There is no such value in list " << val;
-    cout << endl;
+    cout << "There is no such value in list: " << val << endl;
     return nullptr;
 }
 
