@@ -2,7 +2,7 @@
 #include <math.h>
 
 double func(double n){
-    return sin(n);
+    return (pow(n,3)-n-2);
 }
 
 double sum(double a, int k, double h, int var, double (*func)(double)){
