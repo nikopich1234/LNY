@@ -4,6 +4,6 @@
 int main(){
     string infix;
     getline(cin,infix);
-    cout << InfixToPostfix(infix) << "\n" << InfixToPrefix(infix) << "\n" << PostfixToInfix(InfixToPostfix(infix)) << "\n" << PrefixToInfix(InfixToPrefix(infix)) << "\n";
+    cout << "Infix to postfix: " << InfixToPostfix(infix) << "\n" << "Infix to prefix: " << InfixToPrefix(infix) << "\n" << "Postfix to infix: " << PostfixToInfix(InfixToPostfix(infix)) << "\n" << "Prefix to infix: " << PrefixToInfix(InfixToPrefix(infix)) << "\n";
     return 0;
 }
