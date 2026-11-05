@@ -103,7 +103,7 @@ int main(){
     if(neg == 1){
         res *= -1;
     }
-    printf("%i\n",res);
+    printf("%i\n",res+1234);
 
     return 0;
 }
