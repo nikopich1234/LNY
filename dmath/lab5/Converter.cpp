@@ -24,12 +24,15 @@ string InfixToPostfix(string infix){
     string postfix;
     Node* stack = nullptr;
     for(int i = 0; i < infix.length(); i++){
-        if(infix[i]=='('){
+        if(infix[i] == ' '){
+            continue;
+        }
+        if(infix[i] == '('){
             push(stack,string(1,'('));
         }
         else if(infix[i] == ')'){
             while(stack != nullptr && show(stack) != string(1,'(')){
-                postfix+=show(stack);
+                postfix += show(stack) + " ";
                 pop(stack);
             }
             if(stack != nullptr){
@@ -37,22 +40,30 @@ string InfixToPostfix(string infix){
             }
         }
         else if(get_priority(string(1,infix[i])) == -1){
-            postfix+=infix[i];
+            while(i < infix.length() and get_priority(string(1,infix[i])) == -1 and infix[i] != ' ' and infix[i] != ')'){
+                postfix += infix[i];
+                i++;
+            }
+            i--;
+            postfix += " ";
         }
         else if(infix[i] == '!'){
             push(stack, string(1,'!'));
         }
         else{
             while(stack != nullptr && get_priority(show(stack)) >= get_priority(string(1,infix[i]))){
-                postfix+=show(stack);
+                postfix += show(stack) + " ";
                 pop(stack);
             }
             push(stack,string(1,infix[i]));
         }
     }
     while(stack != nullptr){
-        postfix+=show(stack);
+        postfix += show(stack) + " ";
         pop(stack);
+    }
+    if(postfix.length() > 0){
+        postfix.pop_back();
     }
     return postfix;
 }
@@ -60,30 +71,16 @@ string InfixToPostfix(string infix){
 string InfixToPrefix(string infix){
     string prefix;
     Node* stack = nullptr;
-    Node* temp_stack = nullptr;
-    Node* invert_stack = nullptr;
-    for(int i = 0; i < infix.length(); i++){
-        push(invert_stack, string(1, infix[i]));
-    }
-    for(int i = 0; i < infix.length(); i++){
-        if(show(invert_stack) == string(1,'(')){
-            infix[i] = ')';
+    for(int i = infix.length()-1; i >= 0; i--){
+        if(infix[i] == ' '){
+            continue;
         }
-        else if(show(invert_stack) == string(1, ')')){
-            infix[i] = '(';
-        }
-        else{
-            infix[i] = show(invert_stack)[0];
-        }
-        pop(invert_stack);
-    }
-    for(int i = 0; i < infix.length(); i++){
-        if(infix[i] == '('){
+        if(infix[i] == ')'){
             push(stack,string(1,'('));
         }
-        else if(infix[i] == ')'){
+        else if(infix[i] == '('){
             while(stack != nullptr && show(stack) != string(1,'(')){
-                prefix += show(stack);
+                prefix = show(stack) + " " + prefix;
                 pop(stack);
             }
             if(stack != nullptr){
@@ -91,35 +88,28 @@ string InfixToPrefix(string infix){
             }
         }
         else if(get_priority(string(1,infix[i])) == -1){
-            prefix+=infix[i];
+            string number;
+            while(i >= 0 and get_priority(string(1,infix[i])) == -1 and infix[i] != ' ' and infix[i] != ')'){
+                number = infix[i] + number;
+                i--;
+            }
+            i++;
+            prefix = number + " " + prefix;
         }
         else{
             while(stack != nullptr && get_priority(show(stack)) > get_priority(string(1,infix[i]))){
-                prefix+=show(stack);
+                prefix = show(stack) + " " + prefix;
                 pop(stack);
             }
             push(stack,string(1,infix[i]));
         }
     }
     while(stack != nullptr){
-        prefix+=show(stack);
+        prefix = show(stack) + " " + prefix;
         pop(stack);
     }
-
-    for(int i = 0; i < prefix.length(); i++){
-        push(invert_stack, string(1,prefix[i]));
-    }
-    for(int i = 0; i < prefix.length(); i++){
-        if(show(invert_stack) == string(1,'(')){
-            prefix[i] = ')';
-        }
-        else if(show(invert_stack) == string(1,')')){
-            prefix[i] = '(';
-        }
-        else{
-            prefix[i] = show(invert_stack)[0];
-        }
-        pop(invert_stack);
+    if(prefix.length() > 0){
+        prefix.pop_back();
     }
     return prefix;
 }
@@ -128,8 +118,17 @@ string PostfixToInfix(string postfix){
     string infix;
     Node* stack = nullptr;
     for(int i = 0; i < postfix.length(); i++){
+        if(postfix[i] == ' '){
+            continue;
+        }
         if(get_priority(string(1, postfix[i])) == -1){
-            push(stack,string(1,postfix[i]));
+            string number;
+            while(i < postfix.length() and postfix[i] != ' ' and get_priority(string(1,postfix[i])) == -1){
+                number += postfix[i];
+                i++;
+            }
+            i--;
+            push(stack, number);
         }
         else if(postfix[i] == '!'){
             string operand = show(stack);
@@ -156,8 +155,17 @@ string PrefixToInfix(string prefix){
     string infix;
     Node* stack = nullptr;
     for(int i = prefix.length()-1; i >= 0; i--){
+        if(prefix[i] == ' '){
+            continue;
+        }
         if(get_priority(string(1,prefix[i])) == -1){
-            push(stack, string(1,prefix[i]));
+            string number;
+            while(i >= 0 and prefix[i] != ' ' and get_priority(string(1,prefix[i])) == -1){
+                number = prefix[i] + number;
+                i--;
+            }
+            i++;
+            push(stack, number);
         }
         else if(prefix[i] == '!'){
             string operand = show(stack);
@@ -177,4 +185,120 @@ string PrefixToInfix(string prefix){
     }
     infix = show(stack);
     return infix;
+}
+
+double PostfixEvaluate(string postfix){
+    Node* stack = nullptr;
+    for(int i = 0; i < postfix.length(); i++){
+        if(postfix[i] == ' '){
+            continue;
+        }
+        if(get_priority(string(1,postfix[i])) == -1){
+            string number;
+            while(i < postfix.length() and postfix[i] != ' ' and get_priority(string(1,postfix[i])) == -1){
+                number += postfix[i];
+                i++;
+            }
+            i--;
+            push(stack, number);
+        }
+        else if(postfix[i] == '!'){
+            double operand = stod(show(stack));
+            pop(stack);
+
+            double result = 1;
+            for(int j = 2; j <= operand; j++){
+                result *= j;
+            }
+            push(stack, to_string(result));
+        }
+        else{
+            double right = stod(show(stack));
+            pop(stack);
+            double left = stod(show(stack));
+            pop(stack);
+
+            double result = 0;
+            if(postfix[i] == '+'){
+                result = left + right;
+            }
+            else if(postfix[i] == '-'){
+                result = left - right;
+            }
+            else if(postfix[i] == '*'){
+                result = left * right;
+            }
+            else if(postfix[i] == '/'){
+                if(right == 0){
+                    throw runtime_error("Division by zero");
+                }
+                result = left / right;
+            }
+            else if(postfix[i] == '^'){
+                result = pow(left, right);
+            }
+            push(stack, to_string(result));
+        }
+    }
+    double answer = stod(show(stack));
+    pop(stack);
+    return answer;
+}
+
+double PrefixEvaluate(string prefix){
+    Node* stack = nullptr;
+    for(int i = prefix.length()-1; i >= 0; i--){
+        if(prefix[i] == ' '){
+            continue;
+        }
+        if(get_priority(string(1,prefix[i])) == -1){
+            string number;
+            while(i >= 0 and prefix[i] != ' ' and get_priority(string(1,prefix[i])) == -1){
+                number = prefix[i] + number;
+                i--;
+            }
+            i++;
+            push(stack, number);
+        }
+        else if(prefix[i] == '!'){
+            double operand = stod(show(stack));
+            pop(stack);
+
+            double result = 1;
+            for(int j = 2; j <= operand; j++){
+                result *= j;
+            }
+            push(stack, to_string(result));
+        }
+        else{
+            double left = stod(show(stack));
+            pop(stack);
+            double right = stod(show(stack));
+            pop(stack);
+
+            double result = 0;
+            if(prefix[i] == '+'){
+                result = left + right;
+            }
+            else if(prefix[i] == '-'){
+                result = left - right;
+            }
+            else if(prefix[i] == '*'){
+                result = left * right;
+            }
+            else if(prefix[i] == '/'){
+                if(right == 0){
+                    throw runtime_error("Division by zero");
+                }
+                result = left / right;
+            }
+            else if(prefix[i] == '^'){
+                result = pow(left, right);
+            }
+            push(stack, to_string(result));
+        }
+    }
+    double answer = stod(show(stack));
+    pop(stack);
+    return answer;
 }
