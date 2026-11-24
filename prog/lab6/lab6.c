@@ -2,7 +2,11 @@
 #include <math.h>
 
 double func(double n){
+<<<<<<< Updated upstream
     return (pow(n,3)-n-2);
+=======
+    return (pow(num,3)-num-2);
+>>>>>>> Stashed changes
 }
 
 double sum(double a, int k, double h, int var, double (*func)(double)){
